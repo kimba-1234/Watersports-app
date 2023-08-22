@@ -1,2 +1,18 @@
 <h1>Listings#index</h1>
 <p>Find me in app/views/listings/index.html.erb</p>
+
+<div class="listings-container">
+  <% @listings.each do |listing| %>
+    <div class="listing">
+      <h2>
+        <%= link_to listing.title, listing %>
+      </h2>
+      <p>
+        <%= listing.user.name %>
+      </p>
+      <div>
+        <%= link_to 'View Listing 1', listing_path(1) %>
+      </div>
+    </div>
+  <% end %>
+</div>
