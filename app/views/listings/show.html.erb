@@ -1,9 +1,9 @@
 <div class="container">
-  <h2><%= @Listing.title %></h2>
-  <p>Description : <%= @Listing.description %></p>
-  <p>Vendor : <%= @Listing.user %></p>
-  <p>Location : <%= @Listing.location %></p>
-  <p>Activity duration : <%= @Listing.duration %>hours</p>
+  <h2><%= @listing.title %></h2>
+  <p>Description : <%= @listing.description %></p>
+  <p>Vendor : <%= @listing.user %></p>
+  <p>Location : <%= @listing.location %></p>
+  <p>Activity duration : <%= @listing.duration %>hours</p>
 
   <%= link_to "Back to see all tours", listings_index_path%>
   <%= link_to "Delete", listings_show_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?" }%>
