@@ -15,6 +15,8 @@ class ListingsController < ApplicationController
 
   def create
     @listing = Listing.new(listing_params)
+    @user = User.find_by(email: current_user.email)
+    @listing.user = @user
 
     if @listing.save
       redirect_to @listing, notice: "Listing was successfully created."
