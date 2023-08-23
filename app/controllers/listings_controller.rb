@@ -3,11 +3,10 @@ class ListingsController < ApplicationController
 
   def index
     @listings = Listing.all
-    @user = User.find_by(email: current_user.email)
+    @user = current_user
   end
 
   def show
-    @listing = Listing.find(params[:id])
   end
 
   def new
