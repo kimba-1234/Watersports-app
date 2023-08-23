@@ -1,14 +1,12 @@
-<!-- app/views/listings/index.html.erb -->
-
 <h1>Listings#index</h1>
 <p>Find me in app/views/listings/index.html.erb</p>
 
 <div class="listings-container">
-  <!-- Iterate through each listing in the @listings collection -->
+  <!-- @listings collection -->
   <% @listings.each do |listing| %>
     <div class="listing">
       <h2>
-        <!--link to the listing's show page -->
+        <!--listing's show page -->
         <%= link_to listing.title, listing_path(listing) %>
       </h2>
       <p>
@@ -23,10 +21,6 @@
         <!-- listing location update -->
         Location: <%= listing.location %>
       </p>
-      <div>
-        <!-- link button to view Listing 1 -->
-        <%= link_to 'View Listing 1', listing_path(1) %>
-      </div>
     </div>
   <% end %>
 </div>
