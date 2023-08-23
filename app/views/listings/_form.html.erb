@@ -6,7 +6,7 @@
   <div class="form-inputs">
     <%= f.input :title %>
     <%= f.input :description %>
-    <%= f.input :user, input_html: {value: current_user.email, disabled: :true} %> <-- need to remember how to get this as the user from the session -->
+    <%= f.input :user, input_html: {value: user.vendor_name, disabled: :true} %>
     <%= f.input :location %>
     <%= f.input :duration %>
   </div>

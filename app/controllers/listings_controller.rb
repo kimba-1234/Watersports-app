@@ -2,6 +2,8 @@ class ListingsController < ApplicationController
   before_action :set_listing, only: %i[ show edit update destroy ]
 
   def index
+    @listing = Listing.all
+    @user = User.find_by(email: current_user.email)
   end
 
   def show
@@ -22,6 +24,7 @@ class ListingsController < ApplicationController
   end
 
   def edit
+    @user = User.find_by(email: current_user.email)
   end
 
   def update
