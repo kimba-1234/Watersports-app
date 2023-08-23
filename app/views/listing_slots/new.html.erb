@@ -1,0 +1,9 @@
+<h1>Add New Slots for <%= @listing.title %></h1>
+
+<%= render "form", listing: @listing, listing_slot: @listing_slot %>
+
+<br>
+
+<div>
+  <%= link_to "Back to listings", listings_path %>
+</div>
