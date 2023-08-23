@@ -1,2 +1,26 @@
 <h1>Listings#index</h1>
 <p>Find me in app/views/listings/index.html.erb</p>
+
+<div class="listings-container">
+  <!-- @listings collection -->
+  <% @listings.each do |listing| %>
+    <div class="listing">
+      <h2>
+        <!--listing's show page -->
+        <%= link_to listing.title, listing_path(listing) %>
+      </h2>
+      <p>
+        <!-- vendor name update -->
+        Vendor: <%= listing.user.vendor_name %>
+      </p>
+      <p>
+        <!-- listing description update-->
+        Description: <%= listing.description %>
+      </p>
+      <p>
+        <!-- listing location update -->
+        Location: <%= listing.location %>
+      </p>
+    </div>
+  <% end %>
+</div>
