@@ -5,9 +5,18 @@
   <p>Location : <%= @listing.location %></p>
   <p>Activity duration : <%= @listing.duration %> hours</p>
 
+  <h3>Available Slots for <%= @listing.title %></h3>
+  <% @listing.listing_slots.each do |slot| %>
+    <% timeslot = "#{slot.start_time} - #{slot.end_time}" %>
+    <% @slot = slot %>
+    <%= link_to timeslot, new_listing_listing_slot_booking_path(@listing, @slot, @user) %>
+    <br>
+  <% end %>
+  <p>--------</p>
   <%= link_to "Back to see all tours", listings_path%> <br>
   <% if current_user.user_type == 'vendor' %>
     <%= link_to 'Edit Listing', edit_listing_path %> <br>
+    <%= link_to "Add new slots for this listing", new_listing_listing_slot_path(@listing) %><br>
     <%= link_to "Delete", listing_path(@listing), data: {turbo_method: :delete, turbo_confirm: "Are you sure?" }%>
   <% end %>
 </div>
