@@ -1,2 +1,12 @@
 <h1>Bookings#show</h1>
 <p>Find me in app/views/bookings/show.html.erb</p>
+
+<h1><%= @listing.title %></h1>
+<p>Description: <%= @listing.description %></p>
+<p>Vendor: <%= @listing.user.vendor_name %></p>
+<p>Location: <%= @listing.location %></p>
+<p>Activity duration: <%= @listing.duration %> hours</p>
+
+<% if @listing.image.attached? %>
+  <%= image_tag @listing.image %>
+<% end %>

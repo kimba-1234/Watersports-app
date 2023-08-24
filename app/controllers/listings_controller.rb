@@ -50,7 +50,8 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
   end
 
+  #added image
   def listing_params
-    params.require(:listing).permit(:title, :description, :vendor, :location, :duration)
+    params.require(:listing).permit(:title, :description, :vendor, :location, :duration, :image)
   end
 end
