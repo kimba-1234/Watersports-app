@@ -1,29 +1,24 @@
 <div class="container my-3">
   <h1>Bali Sea Tours</h1>
 
+  <div class="cards">
+      <% @listings.each do |listing| %>
+        <div class="card-trip">
+          <img src="https://img.jakpost.net/c/2017/01/26/2017_01_26_20163_1485417604._large.jpg" />
+          <div class="card-trip-infos">
+            <div>
+              <h2><%= link_to listing.title, listing_path(listing) %></h2>
+              <p>Description: <%= listing.description %></p>
+              <p>Location: <%= listing.location %></p>
 
-    <% @listings.each do |listing| %>
-      <div class="listing">
-        <h3>
-          <!--listing's show page -->
-          <%= link_to listing.title, listing_path(listing) %>
-        </h3>
-        <p>
-          <!-- vendor name update -->
-          Vendor: <%= listing.user.vendor_name %>
-        </p>
-        <p>
-          <!-- listing description update-->
-          Description: <%= listing.description %>
-        </p>
-        <p>
-          <!-- listing location update -->
-          Location: <%= listing.location %>
-        </p>
-      </div>
-    <% end %>
-    <% if current_user.user_type == 'vendor' %>
-      <%= link_to 'Add a Listing', new_listing_path, class: "btn btn-secondary"%>
-    <% end %>
+            </div>
+            <h2 class="card-trip-pricing">£99.99</h2>
+          </div>
+        </div>
+      <% end %>
+      <% if current_user.user_type == 'vendor' %>
+        <%= link_to 'Add a Listing', new_listing_path, class: "btn btn-secondary"%>
+      <% end %>
+  </div>
 
 </div>
