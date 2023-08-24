@@ -4,6 +4,7 @@
   <p>Vendor : <%= @listing.user.vendor_name %></p>
   <p>Location : <%= @listing.location %></p>
   <p>Activity duration : <%= @listing.duration %> hours</p>
+  <p>Tour price: $<%= @listing.price %></p>
 
   <h3>Available Slots for <%= @listing.title %></h3>
   <% @listing.listing_slots.each do |slot| %>
