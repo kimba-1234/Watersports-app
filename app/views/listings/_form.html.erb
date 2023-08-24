@@ -8,9 +8,9 @@
     <%= f.input :user, input_html: { value: user.vendor_name, disabled: :true } %>
     <%= f.input :location %>
     <%= f.input :duration %>
-
     <!-- Added an image upload field -->
     <%= f.input :image, as: :file, label: "Add Listing Images" %>
+    <%= f.input :price %>
   </div>
 
   <div class="form-actions">

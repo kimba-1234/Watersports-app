@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_08_24_060009) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_060009) do
     t.date "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "booked"
     t.index ["listing_id"], name: "index_listing_slots_on_listing_id"
   end
 
@@ -68,6 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_060009) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "price"
     t.index ["user_id"], name: "index_listings_on_user_id"
   end
 

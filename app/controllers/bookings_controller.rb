@@ -15,14 +15,16 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new
-    @booking.listing_slot = ListingSlot.find(params[:listing_slot_id])
+    @listingslot = ListingSlot.find(params[:listing_slot_id])
+    @listingslot.booked = true
+    @listingslot.save!
+    @booking.listing_slot = @listingslot
     # listing_slot_id is being stored in two places, once from selection and once from params - need to fix
     @booking.user = User.find_by(email: current_user.email)
 
     if @booking.save
-      redirect_to listings_url, notice: "Booking was successfully created."
+      redirect_to booking_url(@booking), notice: "Booking was successfully created."
     else
-      raise
       render :new, status: :unprocessable_entity
     end
   end
