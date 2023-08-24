@@ -1,5 +1,7 @@
-<h1>Make a new booking for <%= @listing.title %></h1>
+<div class="container my-3">
+  <h1>Make a new booking for <%= @listing.title %></h1>
 
-<%= render "form", listing: @listing, slot: @slot, booking: @booking %>
+  <%= render "form", listing: @listing, slot: @slot, booking: @booking %>
 
-<%= link_to "Back to see all tours", listings_path%>
+  <%= link_to "Back to see all tours", listings_path%>
+</div>

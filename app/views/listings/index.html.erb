@@ -1,33 +1,33 @@
-<h1>Bali Sea Tours</h1>
+<div class="container my-3">
+  <h1>Bali Sea Tours</h1>
 
-<div class="container">
-  <!-- @listings collection -->
-  <% @listings.each do |listing| %>
-    <div class="listing">
-      <h2>
-        <!--listing's show page -->
-        <%= link_to listing.title, listing_path(listing) %>
-      </h2>
-      <p>
-        <!-- vendor name update -->
-        Vendor: <%= listing.user.vendor_name %>
-      </p>
-      <p>
-        <!-- listing description update-->
-        Description: <%= listing.description %>
-      </p>
-      <p>
-        <!-- listing location update -->
-        Location: <%= listing.location %>
-      </p>
+
+    <% @listings.each do |listing| %>
+      <div class="listing">
+        <h3>
+          <!--listing's show page -->
+          <%= link_to listing.title, listing_path(listing) %>
+        </h3>
+        <p>
+          <!-- vendor name update -->
+          Vendor: <%= listing.user.vendor_name %>
+        </p>
+        <p>
+          <!-- listing description update-->
+          Description: <%= listing.description %>
+        </p>
+        <p>
+          <!-- listing location update -->
+          Location: <%= listing.location %>
+        </p>
         <p>
         <!-- listing location update -->
         Tour price: $<%= listing.price %>
-      </p>
-    </div>
-  <% end %>
-  <% if current_user.user_type == 'vendor' %>
-    <%= link_to 'Add a Listing', new_listing_path %>
-  <% end %>
-  <%= link_to "See all of your bookings", listing_slots_path%><br>
+        </p>
+      </div>
+    <% end %>
+    <% if current_user.user_type == 'vendor' %>
+      <%= link_to 'Add a Listing', new_listing_path, class: "btn btn-secondary"%>
+    <% end %>
+    <%= link_to "See all of your bookings", listing_slots_path%><br>
 </div>
