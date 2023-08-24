@@ -9,16 +9,16 @@
             <div>
               <h2><%= link_to listing.title, listing_path(listing) %></h2>
               <p>Description: <%= listing.description %></p>
+              <p>Vendor: <%= listing.user.vendor_name %></p>
               <p>Location: <%= listing.location %></p>
-
             </div>
-            <h2 class="card-trip-pricing">£99.99</h2>
+            <h2 class="card-trip-pricing">$<%= listing.price %></h2>
           </div>
         </div>
       <% end %>
       <% if current_user.user_type == 'vendor' %>
         <%= link_to 'Add a Listing', new_listing_path, class: "btn btn-secondary"%>
       <% end %>
+      <%= link_to "See all of your bookings", listing_slots_path%><br>
   </div>
-
 </div>

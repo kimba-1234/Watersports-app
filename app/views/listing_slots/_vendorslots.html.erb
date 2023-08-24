@@ -1,0 +1,8 @@
+<% listing_slots.each do |slot| %>
+  <p>------------</p>
+  <h4><%= slot.listing.title %></h4>
+  <p>Start time: <%= slot.start_time %></p>
+  <p>Client name: <%= slot.booking.user.first_name %><%= slot.booking.user.last_name %></p>
+  <p>Location: <%= slot.listing.location %></p>
+  <p>------------</p>
+<% end %>
