@@ -30,12 +30,12 @@ listing_1 = Listing.create!(title: "Scuba dive with turtles", description: "Get 
 listing_2 = Listing.create!(title: "Swim with Nemo", description: "See hundreds of colourful fish on this snorkelling adventure", user: vendor_2, location: "Gili Island", duration: 8, price: 49.99)
 listing_3 = Listing.create!(title: "Surf and swim in Uluwatu", description: "Enjoy the beach and the waves on this surfing adventure", user: vendor_2, location: "Uluwatu", duration: 4, price: 30.50)
 
-listing_slot_1 = ListingSlot.create!(listing: listing_1, start_time: Date.new(2023,2,25), end_time: Date.new(2024,3,25), booked: true)
-listing_slot_2 = ListingSlot.create!(listing: listing_2, start_time: Date.new(2023,2,25), end_time: Date.new(2024,3,26), booked: true)
-listing_slot_3 = ListingSlot.create!(listing: listing_1, start_time: Date.new(2024,2,25), end_time: Date.new(2024,3,25), booked: true)
-listing_slot_4 = ListingSlot.create!(listing: listing_3, start_time: Date.new(2026,4,01), end_time: Date.new(2027,10,01), booked: true)
-listing_slot_5 = ListingSlot.create!(listing: listing_2, start_time: Date.new(2023,4,06), end_time: Date.new(2024,10,01))
-listing_slot_6 = ListingSlot.create!(listing: listing_2, start_time: Date.new(2023,4,01), end_time: Date.new(2025,10,01))
+listing_slot_1 = ListingSlot.create!(listing: listing_1, start_time: DateTime.parse('10 Sept 2023 09:00:00'), end_time: DateTime.parse('10 Sept 2023 17:00:00'), booked: true)
+listing_slot_2 = ListingSlot.create!(listing: listing_2, start_time: DateTime.parse('11 Sept 2023 09:00:00'), end_time: DateTime.parse('11 Sept 2023 17:00:00'), booked: true)
+listing_slot_3 = ListingSlot.create!(listing: listing_1, start_time: DateTime.parse('12 Sept 2023 09:00:00'), end_time: DateTime.parse('12 Sept 2023 17:00:00'), booked: true)
+listing_slot_4 = ListingSlot.create!(listing: listing_3, start_time: DateTime.parse('10 Sept 2023 09:00:00'), end_time: DateTime.parse('10 Sept 2023 17:00:00'), booked: true)
+listing_slot_5 = ListingSlot.create!(listing: listing_2, start_time: DateTime.parse('11 Sept 2023 09:00:00'), end_time: DateTime.parse('11 Sept 2023 17:00:00'))
+listing_slot_6 = ListingSlot.create!(listing: listing_2, start_time: DateTime.parse('12 Sept 2023 09:00:00'), end_time: DateTime.parse('12 Sept 2023 17:00:00'))
 
 booking_1 = Booking.create!(listing_slot: listing_slot_1, user: client_1)
 booking_2 = Booking.create!(listing_slot: listing_slot_2, user: client_1)
