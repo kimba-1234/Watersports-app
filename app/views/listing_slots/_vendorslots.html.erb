@@ -1,8 +1,22 @@
-<% listing_slots.each do |slot| %>
-  <p>------------</p>
-  <h4><%= slot.listing.title %></h4>
-  <p>Start time: <%= slot.start_time %></p>
-  <p>Client name: <%= slot.booking.user.first_name %><%= slot.booking.user.last_name %></p>
-  <p>Location: <%= slot.listing.location %></p>
-  <p>------------</p>
-<% end %>
+<h1>Your upcoming client bookings!</h1>
+
+<div class="accordion" id="accordionBookings">
+  <% listing_slots.each_with_index do |slot, index| %>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="booking-heading-<%= index %>">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#booking-collapse-<%= index %>" aria-expanded="true" aria-controls="booking-collapse-<%= index %>">
+          <%= slot.listing.title %>
+        </button>
+      </h2>
+      <div id="booking-collapse-<%= index %>" class="accordion-collapse collapse<%= index == 0 ? ' show' : '' %>" aria-labelledby="booking-heading-<%= index %>">
+        <div class="accordion-body">
+          <p>Start time: <%= slot.start_time %></p>
+          <p>Client name: <%= slot.booking.user.first_name %> <%= slot.booking.user.last_name %></p>
+          <p>Client Email: <%= slot.booking.user.email %></p>
+          <p>Client Phone: <%= slot.booking.user.phone_number %></p>
+          <p>Location: <%= slot.listing.location %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
