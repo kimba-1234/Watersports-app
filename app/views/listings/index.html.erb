@@ -20,6 +20,10 @@
         <!-- listing location update -->
         Location: <%= listing.location %>
       </p>
+        <p>
+        <!-- listing location update -->
+        Tour price: $<%= listing.price %>
+      </p>
     </div>
   <% end %>
   <% if current_user.user_type == 'vendor' %>
