@@ -1,6 +1,7 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: %i[ show edit update destroy ]
 
+
   def index
     @listings = Listing.all
     @user = current_user

@@ -1,4 +1,5 @@
 class ListingSlotsController < ApplicationController
+
   def index
     @listing_slots = ListingSlot.all
     @clientbookings = Booking.where(user: current_user)

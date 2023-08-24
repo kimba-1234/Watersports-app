@@ -36,14 +36,14 @@
       <% @listing.listing_slots.each do |slot| %>
         <% timeslot = "#{slot.start_time} - #{slot.end_time}" %>
         <% @slot = slot %>
-        <%= link_to timeslot, new_listing_listing_slot_booking_path(@listing, @slot, @user), class: "btn btn-secondary" %>
+        <%= link_to timeslot, new_listing_listing_slot_booking_path(@listing, @slot, @user), class: "btn btn-primary m-2"%>
         <br>
       <% end %>
     </div>
   </div>
 
-    <%= link_to "Back to see all tours", listings_path, class: "btn btn-primary" %> <br>
-    <% if current_user.user_type == 'vendor' %>
+    <%= link_to "Back to see all tours", listings_path, class: "btn btn-secondary" %> <br>
+    <% if user_signed_in? && current_user.user_type == 'vendor' %>
       <%= link_to 'Edit Listing', edit_listing_path %> <br>
       <%= link_to "Add new slots for this listing", new_listing_listing_slot_path(@listing) %><br>
     <% end %>
