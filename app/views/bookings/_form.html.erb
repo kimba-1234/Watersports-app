@@ -2,12 +2,13 @@
 <%= simple_form_for [listing, slot, booking] do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <div class="form">
+    <div class="form-inputs">
+      <%= f.input :listing_slot, input_html: {value: slot.start_time, disabled: :true} %>
+    </div>
 
-  <div class="form-inputs">
-    <%= f.input :listing_slot, input_html: {value: slot.start_time, disabled: :true} %>
+    <div class="form-actions">
+      <%= f.button :submit, class: "btn btn-primary mb-5"%>
+    </div>
+  <% end %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, class: "btn btn-primary"%>
-  </div>
-<% end %>
