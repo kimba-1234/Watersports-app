@@ -6,5 +6,10 @@
 <p>Description: <%= @booking.listing_slot.listing.description %></p>
 <p>Your activity is <%= @booking.listing_slot.listing.duration %> hours long - don't forget snacks!</p>
 <p>--------</p>
+<% if @booking.listing_slot.listing.image.attached? %>
+  <%= image_tag @booking.listing_slot.listing.image %>
+<% end %>
+<p>--------</p>
 <%= link_to "See all of your bookings", listing_slots_path%><br>
 <%= link_to "Back to see all tours", listings_path%>
+
