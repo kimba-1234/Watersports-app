@@ -1,5 +1,19 @@
 class ListingSlotsController < ApplicationController
   def index
+    @listing_slots = ListingSlot.all
+    @clientbookings = Booking.where(user: current_user)
+    @client_slots = @clientbookings.map { |booking| booking.listing_slot }
+    #vendor below
+    @vendor_listings = Listing.where(user: current_user)
+    # above this line works so far
+    @vendor_slots_all = []
+    @vendor_listings.each { |listing| listing.listing_slots.each { |slot| @vendor_slots_all << slot } }
+    @vendor_slots = []
+    @vendor_slots_all.each do |slot|
+      if slot.booked == true
+        @vendor_slots << slot
+      end
+    end
   end
 
   def new

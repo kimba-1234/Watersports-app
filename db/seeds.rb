@@ -15,19 +15,32 @@ User.destroy_all
 puts "destroy success"
 
 client_1 = User.create!(email: "andrew@email.com", password: "abcd123", first_name: "Andrew", last_name: "Brown",
-   phone_number: "+6299900088", user_type: "client", vendor_name: "", vendor_description: "")
+    phone_number: "+6299900088", user_type: "client", vendor_name: "", vendor_description: "")
+client_2 = User.create!(email: "hello@test.com", password: "abcd123", first_name: "Christina", last_name: "Sugiono",
+    phone_number: "+6299908268", user_type: "client", vendor_name: "", vendor_description: "")
+client_3 = User.create!(email: "christian@choosemyescort.com", password: "abcd123", first_name: "Christian", last_name: "Morris",
+    phone_number: "+6299908998", user_type: "client", vendor_name: "", vendor_description: "")
 
 vendor_1 = User.create!(email: "philboss@email.com", password: "abc456", first_name: "Phil", last_name: "Boss",
     phone_number: "+621234567", user_type: "vendor", vendor_name: "PhilBoss Scuba Venture", vendor_description: "the best scuba boat trip in Bali")
+vendor_2 = User.create!(email: "sharkeysnorkles@email.com", password: "abc123", first_name: "Ian", last_name: "Sharkey",
+    phone_number: "+621200067", user_type: "vendor", vendor_name: "Sharkey Snorkles", vendor_description: "You'll see some beautiful sealife when you snorkle with Sharkey!")
 
-listing_1 = Listing.create!(title: "Scuba dive with turtles", description: "Itinerary descriptions", user: vendor_1, location: "Nusa Penida", duration: 5)
-listing_2 = Listing.create!(title: "Swim with Nemo", description: "Itinerary descriptions", user: vendor_1, location: "Gili Island", duration: 5)
+listing_1 = Listing.create!(title: "Scuba dive with turtles", description: "Get within 1m of these magnificent creatures when you scuba dive with turtles.", user: vendor_1, location: "Nusa Penida", duration: 5, price: 89.99)
+listing_2 = Listing.create!(title: "Swim with Nemo", description: "See hundreds of colourful fish on this snorkelling adventure", user: vendor_2, location: "Gili Island", duration: 8, price: 49.99)
+listing_3 = Listing.create!(title: "Surf and swim in Uluwatu", description: "Enjoy the beach and the waves on this surfing adventure", user: vendor_2, location: "Uluwatu", duration: 4, price: 30.50)
 
-listing_slot_1 = ListingSlot.create!(listing: listing_1, start_time: Date.new(2023,2,25), end_time: Date.new(2024,3,25))
-listing_slot_2 = ListingSlot.create!(listing: listing_2, start_time: Date.new(2023,4,01), end_time: Date.new(2024,10,01))
+listing_slot_1 = ListingSlot.create!(listing: listing_1, start_time: Date.new(2023,2,25), end_time: Date.new(2024,3,25), booked: true)
+listing_slot_2 = ListingSlot.create!(listing: listing_2, start_time: Date.new(2023,2,25), end_time: Date.new(2024,3,26), booked: true)
+listing_slot_3 = ListingSlot.create!(listing: listing_1, start_time: Date.new(2024,2,25), end_time: Date.new(2024,3,25), booked: true)
+listing_slot_4 = ListingSlot.create!(listing: listing_3, start_time: Date.new(2026,4,01), end_time: Date.new(2027,10,01), booked: true)
+listing_slot_5 = ListingSlot.create!(listing: listing_2, start_time: Date.new(2023,4,06), end_time: Date.new(2024,10,01))
+listing_slot_6 = ListingSlot.create!(listing: listing_2, start_time: Date.new(2023,4,01), end_time: Date.new(2025,10,01))
 
 booking_1 = Booking.create!(listing_slot: listing_slot_1, user: client_1)
 booking_2 = Booking.create!(listing_slot: listing_slot_2, user: client_1)
+booking_3 = Booking.create!(listing_slot: listing_slot_3, user: client_2)
+booking_4 = Booking.create!(listing_slot: listing_slot_4, user: client_2)
 
 review_1 = Review.create!(rating: 5, comment: "review comment", listing: listing_1, user: client_1)
 review_2 = Review.create!(rating: 3, comment: "where is dory?", listing: listing_2, user: client_1)

@@ -24,8 +24,11 @@
       <p><%= @listing.location %></p>
       <strong>Activity duration</strong>
       <p><%= @listing.duration %> hours</p>
+      <p>Tour price: $<%= @listing.price %></p>
     </div>
   </div>
+
+  <%= cl_image_tag @listing.image.key if @listing.image.attached? %>
 
   <div class="card w-75 mb-5 bg-light">
     <div class="card-body">

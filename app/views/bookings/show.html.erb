@@ -1,2 +1,15 @@
-<h1>Bookings#show</h1>
-<p>Find me in app/views/bookings/show.html.erb</p>
+<h2>Booking confirmation for your booking of <%= @booking.listing_slot.listing.title %></h2>
+<p>Booking for <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
+<p>Start: <%= @booking.listing_slot.start_time %></p>
+<p>End: <%= @booking.listing_slot.end_time %></p>
+<p>Your activity is booked with <strong><%= @booking.listing_slot.listing.user.vendor_name %></strong></p>
+<p>Description: <%= @booking.listing_slot.listing.description %></p>
+<p>Your activity is <%= @booking.listing_slot.listing.duration %> hours long - don't forget snacks!</p>
+<p>--------</p>
+<% if @booking.listing_slot.listing.image.attached? %>
+  <%= image_tag @booking.listing_slot.listing.image %>
+<% end %>
+<p>--------</p>
+<%= link_to "See all of your bookings", listing_slots_path%><br>
+<%= link_to "Back to see all tours", listings_path%>
+
