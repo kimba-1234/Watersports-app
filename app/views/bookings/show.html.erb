@@ -1,15 +1,42 @@
-<h2>Booking confirmation for your booking of <%= @booking.listing_slot.listing.title %></h2>
-<p>Booking for <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
-<p>Start: <%= @booking.listing_slot.start_time %></p>
-<p>End: <%= @booking.listing_slot.end_time %></p>
-<p>Your activity is booked with <strong><%= @booking.listing_slot.listing.user.vendor_name %></strong></p>
-<p>Description: <%= @booking.listing_slot.listing.description %></p>
-<p>Your activity is <%= @booking.listing_slot.listing.duration %> hours long - don't forget snacks!</p>
-<p>--------</p>
-<% if @booking.listing_slot.listing.image.attached? %>
-  <%= image_tag @booking.listing_slot.listing.image %>
-<% end %>
-<p>--------</p>
+<div>
+  <div class="py-4">
+    <h2>Congratulations <%= @user.first_name %>, you're going on the <%= @booking.listing_slot.listing.title %> tour!</h2>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <%= image_tag "https://images.unsplash.com/photo-1514855170001-ee95e4302737?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80", style: 'width:100%;margin-bottom:20px;', class: "rounded"%>
+      <% if @booking.listing_slot.listing.image.attached? %>
+          <%= image_tag @booking.listing_slot.listing.image %>
+      <% end %>
+      <div>
+        <p>Tour provided by <strong><%= @booking.listing_slot.listing.user.vendor_name %></strong></p>
+        <p>Got a question? Contact them on <%= @booking.listing_slot.listing.user.phone_number %></p>
+      </div>
+    </div>
+
+    <div class="col-8 bg-light p-3 rounded">
+      <div>
+        <h4>Here's the details of your tour...</h4>
+        <p>Booking name: <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
+        <p><%= @booking.listing_slot.listing.description %></p>
+        <p>Your activity is <%= @booking.listing_slot.listing.duration %> hours long - don't forget snacks!</p>
+      </div>
+      <div class="d-flex flex-row justify-content-around pt-3">
+        <div class="col-3 bg-white rounded d-flex flex-column justify-content-center align-items-center p-3 bkng-icon">
+          <i class="fa-solid fa-hourglass-start" style="color: #0cc0df;"></i>
+          <p><%= @booking.listing_slot.listing.duration %> hours</p>
+        </div>
+        <div class="col-3 bg-white rounded d-flex flex-column justify-content-center align-items-center p-3 bkng-icon">
+          <i class="fa-regular fa-clock" style="color: #0cc0df;"></i>
+          <p><%= @booking.listing_slot.start_time %></p>
+        </div>
+        <div class="col-3 bg-white rounded d-flex flex-column justify-content-center align-items-center p-3 bkng-icon">
+          <i class="fa-solid fa-location-pin" style="color: #0cc0df;"></i>
+          <p><%= @booking.listing_slot.listing.location %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <%= link_to "See all of your bookings", listing_slots_path%><br>
 <%= link_to "Back to see all tours", listings_path%>
-

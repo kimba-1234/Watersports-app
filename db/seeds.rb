@@ -26,7 +26,8 @@ vendor_1 = User.create!(email: "philboss@email.com", password: "abc456", first_n
 vendor_2 = User.create!(email: "sharkeysnorkles@email.com", password: "abc123", first_name: "Ian", last_name: "Sharkey",
     phone_number: "+621200067", user_type: "vendor", vendor_name: "Sharkey Snorkles", vendor_description: "You'll see some beautiful sealife when you snorkle with Sharkey!")
 
-listing_1 = Listing.create!(title: "Scuba dive with turtles", description: "Get within 1m of these magnificent creatures when you scuba dive with turtles.", user: vendor_1, location: "Nusa Penida", duration: 5, price: 89.99)
+listing_1 = Listing.create!(title: "Scuba dive with turtles", description: "Get within 1m of these magnificent creatures when you scuba dive with turtles.
+  Walk at the bottom of the sea without getting your hair wet. Sea walker is a soft dive system that is designed specifically for those who are not confident swimmers or do not wish to dive. All you will need to do is put on a helmet with a transparent visor and head on down to explore Bali’s stunning underwater life with a professional.", user: vendor_1, location: "Nusa Penida", duration: 5, price: 89.99)
 listing_2 = Listing.create!(title: "Swim with Nemo", description: "See hundreds of colourful fish on this snorkelling adventure", user: vendor_2, location: "Gili Island", duration: 8, price: 49.99)
 listing_3 = Listing.create!(title: "Surf and swim in Uluwatu", description: "Enjoy the beach and the waves on this surfing adventure", user: vendor_2, location: "Uluwatu", duration: 4, price: 30.50)
 

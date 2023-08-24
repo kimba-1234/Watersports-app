@@ -5,6 +5,7 @@ class BookingsController < ApplicationController
   end
 
   def show
+    @user = User.find_by(email: current_user.email)
   end
 
   def new
