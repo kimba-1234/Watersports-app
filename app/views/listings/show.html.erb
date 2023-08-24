@@ -7,10 +7,12 @@
 
   <h3>Available Slots for <%= @listing.title %></h3>
   <% @listing.listing_slots.each do |slot| %>
-    <% timeslot = "#{slot.start_time} - #{slot.end_time}" %>
-    <% @slot = slot %>
-    <%= link_to timeslot, new_listing_listing_slot_booking_path(@listing, @slot, @user) %>
-    <br>
+    <% if slot.booked != true %>
+      <% timeslot = "#{slot.start_time} - #{slot.end_time}" %>
+      <% @slot = slot %>
+      <%= link_to timeslot, new_listing_listing_slot_booking_path(@listing, @slot, @user) %>
+      <br>
+    <% end %>
   <% end %>
   <p>--------</p>
   <%= link_to "Back to see all tours", listings_path%> <br>

@@ -1,5 +1,6 @@
 class ListingSlotsController < ApplicationController
   def index
+    @listing_slots = ListingSlot.all
   end
 
   def new

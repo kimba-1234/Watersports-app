@@ -3,10 +3,12 @@ Rails.application.routes.draw do
   root to: "listings#index"
 
   resources :listings do
-    resources :listing_slots, only: [:new, :create] do
-      resources :bookings, only: [:new, :create]
+    resources :listing_slots, only: %i[new create] do
+      resources :bookings, only: %i[new create]
     end
   end
 
-  resources :bookings, only: [:index, :show, :destroy]
+  resources :listing_slots, only: [:index]
+
+  resources :bookings, only: %i[index show destroy]
 end
