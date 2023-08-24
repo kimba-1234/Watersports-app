@@ -3,6 +3,7 @@ class ListingsController < ApplicationController
 
   def index
     @listings = Listing.all
+    @user = current_user
   end
 
   def show
@@ -11,12 +12,12 @@ class ListingsController < ApplicationController
 
   def new
     @listing = Listing.new
-    @user = User.find_by(email: current_user.email)
+    @user = current_user
   end
 
   def create
     @listing = Listing.new(listing_params)
-    @user = User.find_by(email: current_user.email)
+    @user = current_user
     @listing.user = @user
 
     if @listing.save

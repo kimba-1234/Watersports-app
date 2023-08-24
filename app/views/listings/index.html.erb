@@ -1,7 +1,6 @@
-<h1>Listings#index</h1>
-<p>Find me in app/views/listings/index.html.erb</p>
+<h1>Bali Sea Tours</h1>
 
-<div class="listings-container">
+<div class="container">
   <!-- @listings collection -->
   <% @listings.each do |listing| %>
     <div class="listing">
@@ -22,5 +21,8 @@
         Location: <%= listing.location %>
       </p>
     </div>
+  <% end %>
+  <% if current_user.user_type == 'vendor' %>
+    <%= link_to 'Add a Listing', new_listing_path %>
   <% end %>
 </div>
