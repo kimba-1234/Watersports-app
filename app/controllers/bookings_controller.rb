@@ -20,7 +20,7 @@ class BookingsController < ApplicationController
     @booking.user = User.find_by(email: current_user.email)
 
     if @booking.save
-      redirect_to listings_url, notice: "Booking was successfully created."
+      redirect_to booking_url(@booking), notice: "Booking was successfully created."
     else
       raise
       render :new, status: :unprocessable_entity
