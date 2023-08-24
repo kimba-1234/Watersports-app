@@ -17,6 +17,5 @@
   <% if current_user.user_type == 'vendor' %>
     <%= link_to 'Edit Listing', edit_listing_path %> <br>
     <%= link_to "Add new slots for this listing", new_listing_listing_slot_path(@listing) %><br>
-    <%= link_to "Delete", listing_path(@listing), data: {turbo_method: :delete, turbo_confirm: "Are you sure?" }%>
   <% end %>
 </div>
