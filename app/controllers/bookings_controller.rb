@@ -25,7 +25,6 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to booking_url(@booking), notice: "Booking was successfully created."
     else
-      raise
       render :new, status: :unprocessable_entity
     end
   end
