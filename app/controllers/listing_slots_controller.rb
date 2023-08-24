@@ -1,4 +1,5 @@
 class ListingSlotsController < ApplicationController
+before_action :authenticate_user!, only: [:new, :create, :index, :show]
 
   def index
     @listing_slots = ListingSlot.all
