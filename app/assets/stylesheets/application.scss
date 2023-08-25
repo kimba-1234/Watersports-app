@@ -41,18 +41,3 @@ strong{
   font-size: 16px;
   font-weight: 700;
 }
-
-/* Three image containers (use 25% for four, and 50% for two, etc) */
-.column {
-  float: left;
-  width: 33.33%;
-  padding: 5px;
-}
-
-/* Clear floats after image containers */
-.row::after {
-  content: "";
-  margin : 10px;
-  clear: both;
-  display: table;
-}
