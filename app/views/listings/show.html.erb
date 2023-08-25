@@ -11,7 +11,7 @@
   </div>
 
   <div class="d-flex mt-3">
-    <div class="card mb-3 bg-primary w-75 me-3 bg-opacity-10">
+    <div class="card mb-3 bg-primary w-75 me-3 bg-opacity-10 border border-0">
       <div class="card-body">
         <strong>Description</strong><br>
         <p><%= @listing.description %></p>
@@ -24,7 +24,7 @@
         <p>Tour price: $<%= @listing.price %></p>
       </div>
     </div>
-    <div class="card w-25 mb-5 bg-light">
+    <div class="card w-25 mb-5 bg-light border border-0">
       <div class="card-body">
         <strong class="card-title pb-5">Available Slots for <%= @listing.title %></strong><br>
         <% if @available == 0 %>
