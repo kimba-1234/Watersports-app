@@ -7,14 +7,14 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require "open-uri"
 
-puts "destroying all seed first"
+puts "Destroying all seed data..."
 Review.destroy_all
 Booking.destroy_all
 ListingSlot.destroy_all
 Listing.destroy_all
 User.destroy_all
 
-puts "destroy success"
+puts "Destroyed all seed data."
 
 client_1 = User.create!(email: "andrew@email.com", password: "abcd123", first_name: "Andrew", last_name: "Brown",
     phone_number: "+6299900088", user_type: "client", vendor_name: "", vendor_description: "")
@@ -28,28 +28,30 @@ vendor_1 = User.create!(email: "philboss@email.com", password: "abc456", first_n
 vendor_2 = User.create!(email: "sharkeysnorkles@email.com", password: "abc123", first_name: "Ian", last_name: "Sharkey",
     phone_number: "+621200067", user_type: "vendor", vendor_name: "Sharkey Snorkles", vendor_description: "You'll see some beautiful sealife when you snorkle with Sharkey!")
 
+
+
 photo1 = URI.open('https://images.unsplash.com/photo-1558281050-4c33200099c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80')
 listing_1 = Listing.new(title: "Scuba dive with turtles", description: "Get within 1m of these magnificent creatures when you scuba dive with turtles.
   Walk at the bottom of the sea without getting your hair wet. Sea walker is a soft dive system that is designed specifically for those who are not confident swimmers or do not wish to dive. All you will need to do is put on a helmet with a transparent visor and head on down to explore Bali’s stunning underwater life with a professional.", user: vendor_1, location: "Nusa Penida", duration: 5, price: 89.99)
-listing_1.photos.attach(io: photo1, filename: 'image1.jpg', content_type: 'image/jpg')
+listing_1.photos.attach(io: photo1, filename: 'image11.jpg', content_type: 'image/jpg')
 listing_1.save!
 
 photo2 = URI.open('https://images.unsplash.com/photo-1597799119438-cbf326f268b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2833&q=80')
 listing_2 = Listing.new(title: "Swim with Nemo", description: "See hundreds of colourful fish on this snorkelling adventure", user: vendor_2, location: "Gili Island", duration: 8, price: 49.99)
-listing_2.photos.attach(io: photo2, filename: 'image2.jpg', content_type: 'image/jpg')
+listing_2.photos.attach(io: photo2, filename: 'image21.jpg', content_type: 'image/jpg')
 listing_2.save!
 
 photo3 = URI.open('https://images.unsplash.com/photo-1610666025104-7ae9de779215?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80')
 listing_3 = Listing.new(title: "Surf and swim in Uluwatu", description: "Enjoy the beach and the waves on this surfing adventure", user: vendor_2, location: "Uluwatu", duration: 4, price: 30.50)
-listing_3.photos.attach(io: photo3, filename: 'image3.jpg', content_type: 'image/jpg')
+listing_3.photos.attach(io: photo3, filename: 'image31.jpg', content_type: 'image/jpg')
 listing_3.save!
 
-listing_slot_1 = ListingSlot.create!(listing: listing_1, start_time: DateTime.parse('10 Sept 2023 09:00:00'), end_time: DateTime.parse('10 Sept 2023 17:00:00'), booked: true)
-listing_slot_2 = ListingSlot.create!(listing: listing_2, start_time: DateTime.parse('11 Sept 2023 09:00:00'), end_time: DateTime.parse('11 Sept 2023 17:00:00'), booked: true)
-listing_slot_3 = ListingSlot.create!(listing: listing_1, start_time: DateTime.parse('12 Sept 2023 09:00:00'), end_time: DateTime.parse('12 Sept 2023 17:00:00'), booked: true)
-listing_slot_4 = ListingSlot.create!(listing: listing_3, start_time: DateTime.parse('10 Sept 2023 09:00:00'), end_time: DateTime.parse('10 Sept 2023 17:00:00'), booked: true)
-listing_slot_5 = ListingSlot.create!(listing: listing_2, start_time: DateTime.parse('11 Sept 2023 09:00:00'), end_time: DateTime.parse('11 Sept 2023 17:00:00'))
-listing_slot_6 = ListingSlot.create!(listing: listing_2, start_time: DateTime.parse('12 Sept 2023 09:00:00'), end_time: DateTime.parse('12 Sept 2023 17:00:00'))
+listing_slot_1 = ListingSlot.create!(listing: listing_1, start_time: DateTime.parse('10 Sept 2023 09:45:00'), end_time: DateTime.parse('10 Sept 2023 17:00:00'), booked: true)
+listing_slot_2 = ListingSlot.create!(listing: listing_2, start_time: DateTime.parse('12 Sept 2023 11:45:00'), end_time: DateTime.parse('12 Sept 2023 17:00:00'), booked: true)
+listing_slot_3 = ListingSlot.create!(listing: listing_1, start_time: DateTime.parse('13 Sept 2023 13:45:00'), end_time: DateTime.parse('13 Sept 2023 17:00:00'), booked: true)
+listing_slot_4 = ListingSlot.create!(listing: listing_3, start_time: DateTime.parse('23 Sept 2023 15:45:00'), end_time: DateTime.parse('23 Sept 2023 17:00:00'), booked: true)
+listing_slot_5 = ListingSlot.create!(listing: listing_2, start_time: DateTime.parse('24 Sept 2023 17:45:00'), end_time: DateTime.parse('24 Sept 2023 19:00:00'))
+listing_slot_6 = ListingSlot.create!(listing: listing_2, start_time: DateTime.parse('25 Sept 2023 18:45:00'), end_time: DateTime.parse('25 Sept 2023 21:00:00'))
 
 booking_1 = Booking.create!(listing_slot: listing_slot_1, user: client_1)
 booking_2 = Booking.create!(listing_slot: listing_slot_2, user: client_1)

@@ -1,7 +1,7 @@
 <h1>Your upcoming client bookings!</h1>
 
 <div class="accordion" id="accordionBookings">
-  <% listing_slots.each_with_index do |slot, index| %>
+  <% listing_slots.sort_by { |slot| slot.start_time }.each_with_index do |slot, index| %>
     <div class="accordion-item">
       <h2 class="accordion-header" id="booking-heading-<%= index %>">
         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#booking-collapse-<%= index %>" aria-expanded="true" aria-controls="booking-collapse-<%= index %>">
@@ -10,11 +10,44 @@
       </h2>
       <div id="booking-collapse-<%= index %>" class="accordion-collapse collapse<%= index == 0 ? ' show' : '' %>" aria-labelledby="booking-heading-<%= index %>">
         <div class="accordion-body">
-          <p>Start time: <%= slot.start_time %></p>
+          <p>Start date: <%= slot.start_time.strftime('%d %b %Y') %></p>
+          <p>Start time: <%= slot.start_time.strftime('%I:%M %p') %></p>
           <p>Client name: <%= slot.booking.user.first_name %> <%= slot.booking.user.last_name %></p>
           <p>Client Email: <%= slot.booking.user.email %></p>
           <p>Client Phone: <%= slot.booking.user.phone_number %></p>
           <p>Location: <%= slot.listing.location %></p>
+
+          <!-- Add Countdown Timer -->
+          <% if Time.now < slot.start_time %>
+            <div id="booking-countdown-<%= index %>"></div>
+            <script>
+              var bookingCountdownDate = new Date("<%= slot.start_time %>");
+              var now = new Date().getTime();
+              var bookingTimeRemaining = bookingCountdownDate - now;
+              var bookingX = setInterval(function(bookingStartDate) {
+                now = new Date().getTime();
+                bookingTimeRemaining = bookingCountdownDate - now;
+
+
+                var days = Math.floor(bookingTimeRemaining / (1000 * 60 * 60 * 24));
+                console.log();
+                var hours = Math.floor((bookingTimeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((bookingTimeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((bookingTimeRemaining % (1000 * 60)) / 1000);
+
+
+                document.getElementById("booking-countdown-<%= index %>").innerHTML = "Time until the booking starts: " + days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+
+                if (bookingTimeRemaining <= 0) {
+                  clearInterval(bookingX);
+                  document.getElementById("booking-countdown-<%= index %>").innerHTML = "Booking has started!";
+                }
+              }, 1000);
+            </script>
+          <% else %>
+            <p>Booking has already started.</p>
+          <% end %>
         </div>
       </div>
     </div>
