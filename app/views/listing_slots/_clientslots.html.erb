@@ -1,13 +1,25 @@
-<h1>I am a client</h1>
+<h1>Your upcoming water activites!</h1>
 
-<% listing_slots.each do |slot| %>
-  <p>------------</p>
-  <h4><%= slot.listing.title %></h4>
-  <p>Start time: <%= slot.start_time %></p>
-  <p>End time: <%= slot.end_time %></p>
-  <p>This tour is provided by <strong><%= slot.listing.user.vendor_name %></strong></p>
-  <p>This tour is <%= slot.listing.duration %> hours long.</p>
-  <p>Description: <%= slot.listing.description %></p>
-  <p>Location: <%= slot.listing.location %></p>
-  <p>------------</p>
-<% end %>
+<div class="accordion" id="accordionPanelsStayOpenExample">
+  <% listing_slots.each_with_index do |slot, index| %>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="accordion-heading-<%= index %>">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-collapse-<%= index %>" aria-expanded="true" aria-controls="accordion-collapse-<%= index %>">
+          <%= slot.listing.title %>
+        </button>
+      </h2>
+      <div id="accordion-collapse-<%= index %>" class="accordion-collapse collapse<%= index == 0 ? ' show' : '' %>" aria-labelledby="accordion-heading-<%= index %>">
+        <div class="accordion-body">
+          <p>Start time: <%= slot.start_time %></p>
+          <p>End time: <%= slot.end_time %></p>
+          <p>This tour is provided by <strong><%= slot.listing.user.vendor_name %></strong></p>
+          <p>Service Provider Email: <%= slot.listing.user.email %></p>
+          <p>Service Provider Phone: <%= slot.listing.user.phone_number %></p>
+          <p>This tour is <%= slot.listing.duration %> hours long.</p>
+          <p>Description: <%= slot.listing.description %></p>
+          <p>Location: <%= slot.listing.location %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

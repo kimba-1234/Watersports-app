@@ -9,6 +9,8 @@ class ListingsController < ApplicationController
 
   def show
     @booking = Booking.new
+    @booked = @listing.listing_slots.where(booked: true)
+    @available = @booked.size - @listing.listing_slots.size
   end
 
   def new

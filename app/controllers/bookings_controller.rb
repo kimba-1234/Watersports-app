@@ -21,7 +21,6 @@ class BookingsController < ApplicationController
     @listingslot.booked = true
     @listingslot.save!
     @booking.listing_slot = @listingslot
-    # listing_slot_id is being stored in two places, once from selection and once from params - need to fix
     @booking.user = User.find_by(email: current_user.email)
 
     if @booking.save
