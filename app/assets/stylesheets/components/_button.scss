@@ -2,14 +2,16 @@
   color: $gray;
   padding: 8px 24px;
   border-radius: 10px;
+  border-color: white;
   background: #ffffff;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
   transition: background 0.3s ease;
 }
 
 .btn-secondary:hover {
   opacity: 0.8;
-  background: $green;
-  border: 1px solid #0F60C4;
+  background: #fabd74;
+  border: 1px solid #fabd74;
 }
 
 .btn-primary {

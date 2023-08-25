@@ -2,13 +2,13 @@
   <h1> Water Wagon Tours</h1>
   <div class="cards">
     <% @listings.each do |listing| %>
-    <div class="card-trip">
+    <div class="card-trip rounded">
       <%= cl_image_tag listing.photos.first.key if listing.photos.attached? %>
       <div class="card-button">
         <div class="card-trip-infos">
           <div>
             <h4><%= listing.title %></h4>
-            <p><i class="large material-icons">location_on</i> <%= listing.location %></p>
+            <p><i class="large material-icons" style="color: #0cc0df;">location_on</i> <%= listing.location %></p>
           </div>
           <p class="card-trip-pricing">$<%= listing.price %></p>
         </div>
@@ -18,6 +18,6 @@
     <%end%>
   </div>
   <% if user_signed_in? && current_user.user_type == 'vendor' %>
-  <%= link_to 'Add a Listing', new_listing_path, class: "btn btn-secondary"%>
+  <%= link_to 'Add a Listing', new_listing_path, class: "btn btn-secondary my-2"%>
   <% end %>
 </div>
