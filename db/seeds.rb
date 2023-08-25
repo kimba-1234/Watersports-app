@@ -57,6 +57,21 @@ photo3_3 = URI.open('https://i.pinimg.com/1200x/52/31/42/523142f9c0684b2faa51183
 listing_3.photos.attach(io: photo3_3, filename: 'image3.jpg', content_type: 'image/jpg')
 listing_3.save!
 
+listing_4 = Listing.new(title: "WaterBOM", description: "Make a splash at one of the best water parks in the world!", user: vendor_1, location: "Kuta", duration: 8, price: 69.99)
+photo4_1 = URI.open('https://res.cloudinary.com/dh8uxggfc/image/upload/v1692953338/waterbom-bali_k3vsyp.jpg')
+listing_4.photos.attach(io: photo4_1, filename: 'waterbom.jpg', content_type: 'image/jpg')
+listing_4.save!
+
+listing_5 = Listing.new(title: "White Water Rafting", description: "Get your adrenaline fix with this exciting and thrilling water adventure.", user: vendor_1, location: "Ubud", duration: 3, price: 89.99)
+photo5_1 = URI.open('https://res.cloudinary.com/dh8uxggfc/image/upload/v1692953322/bali_rafting_ljz0d9.jpg')
+listing_5.photos.attach(io: photo5_1, filename: 'rafting.jpg', content_type: 'image/jpg')
+listing_5.save!
+
+listing_6 = Listing.new(title: "Deep Sea Fishing", description: "Appreciate the ocean with this deep sea fishing trip.", user: vendor_1, location: "Nusa Penida", duration: 12, price: 149.29)
+photo6_1 = URI.open('https://res.cloudinary.com/dh8uxggfc/image/upload/v1692953303/bali_fishing_pjjcoe.jpg')
+listing_6.photos.attach(io: photo6_1, filename: 'fishing.jpg', content_type: 'image/jpg')
+listing_6.save!
+
 listing_slot_1 = ListingSlot.create!(listing: listing_1, start_time: DateTime.parse('10 Sept 2023 09:45:00'), end_time: DateTime.parse('10 Sept 2023 17:00:00'), booked: true)
 listing_slot_2 = ListingSlot.create!(listing: listing_2, start_time: DateTime.parse('12 Sept 2023 11:45:00'), end_time: DateTime.parse('12 Sept 2023 17:00:00'), booked: true)
 listing_slot_3 = ListingSlot.create!(listing: listing_1, start_time: DateTime.parse('13 Sept 2023 13:45:00'), end_time: DateTime.parse('13 Sept 2023 17:00:00'), booked: true)
