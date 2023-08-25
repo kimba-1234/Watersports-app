@@ -69,9 +69,11 @@
       </div>
     </div>
   </div>
-  <%= link_to "Back to see all tours", listings_path, class: "btn btn-secondary" %> <br>
-  <% if user_signed_in? && current_user.user_type == 'vendor' %>
-    <%= link_to 'Edit Listing', edit_listing_path %> <br>
-    <%= link_to "Add new slots for this listing", new_listing_listing_slot_path(@listing) %><br>
-  <% end %>
+  <div class="d-flex justify-content-center">
+    <%= link_to "Back to see all tours", listings_path, class: "btn btn-secondary m-2" %> <br>
+    <% if user_signed_in? && current_user.user_type == 'vendor' %>
+      <%= link_to 'Edit Listing', edit_listing_path, class: "btn btn-secondary m-2" %> <br>
+      <%= link_to "Add new slots for this listing", new_listing_listing_slot_path(@listing), class: "btn btn-secondary m-2" %><br>
+    <% end %>
+  </div>
 </div>
