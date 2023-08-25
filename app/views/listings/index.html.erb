@@ -4,18 +4,16 @@
   <div class="cards">
     <% @listings.each do |listing| %>
     <div class="card-trip">
-      <img src="https://img.jakpost.net/c/2017/01/26/2017_01_26_20163_1485417604._large.jpg" />
+      <%= cl_image_tag listing.photos.first.key if listing.photos.attached? %>
       <div class="card-button">
         <div class="card-trip-infos">
           <div>
             <h4><%= listing.title %></h4>
-            <p>Description: <%= listing.description %></p>
-            <p>Vendor: <%= listing.user.vendor_name %></p>
             <p><i class="large material-icons">location_on</i> <%= listing.location %></p>
           </div>
           <p class="card-trip-pricing">$<%= listing.price %></p>
         </div>
-          <%= link_to "Find out more", listing_path(listing), class:"btn btn-secondary m-3" %>
+        <%= link_to "Find out more", listing_path(listing), class:"btn btn-secondary m-3" %>
       </div>
     </div>
     <%end%>

@@ -10,7 +10,7 @@
       <%= f.input :location %>
       <%= f.input :duration %>
       <!-- Added an image upload field -->
-      <%= f.input :image, as: :file, label: "Add Listing Images" %>
+      <%= f.input :photos, as: :file, input_html: { multiple: true }, label: "Add Listing Images" %>
       <%= f.input :price %>
     </div>
 
