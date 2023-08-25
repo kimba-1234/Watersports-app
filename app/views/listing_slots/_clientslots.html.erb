@@ -1,7 +1,7 @@
 <h1>Your upcoming water activites!</h1>
 
 <div class="accordion" id="accordionPanelsStayOpenExample">
-  <% listing_slots.each_with_index do |slot, index| %>
+  <% listing_slots.sort_by(&:start_time).each_with_index do |slot, index| %>
     <div class="accordion-item">
       <h2 class="accordion-header" id="accordion-heading-<%= index %>">
         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-collapse-<%= index %>" aria-expanded="true" aria-controls="accordion-collapse-<%= index %>">
@@ -10,14 +10,49 @@
       </h2>
       <div id="accordion-collapse-<%= index %>" class="accordion-collapse collapse<%= index == 0 ? ' show' : '' %>" aria-labelledby="accordion-heading-<%= index %>">
         <div class="accordion-body">
-          <p>Start time: <%= slot.start_time %></p>
-          <p>End time: <%= slot.end_time %></p>
+          <p>Start time: <%= slot.start_time.strftime('%I:%M %p') %></p>
+          <p>End time: <%= slot.end_time.strftime('%I:%M %p') %></p>
+          <p>Date: <%= slot.start_time.strftime('%d %b %y') %></p>
           <p>This tour is provided by <strong><%= slot.listing.user.vendor_name %></strong></p>
           <p>Service Provider Email: <%= slot.listing.user.email %></p>
           <p>Service Provider Phone: <%= slot.listing.user.phone_number %></p>
           <p>This tour is <%= slot.listing.duration %> hours long.</p>
           <p>Description: <%= slot.listing.description %></p>
           <p>Location: <%= slot.listing.location %></p>
+
+          <!-- Add Countdown Timer -->
+          <% if Time.now < slot.start_time %>
+            <div id="countdown-<%= index %>"></div>
+            <script>
+
+              var countdownDate = new Date("<%= slot.start_time %>").getTime();
+              var now = new Date().getTime();
+              var timeRemaining = countdownDate - now;
+
+
+              var x = setInterval(function() {
+                now = new Date().getTime();
+                timeRemaining = countdownDate - now;
+
+
+                var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+
+                document.getElementById("countdown-<%= index %>").innerHTML = "Time until the listing starts: " + days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+                // When the countdown is over, display a message
+                if (timeRemaining <= 0) {
+                  clearInterval(x);
+                  document.getElementById("countdown-<%= index %>").innerHTML = "Listing has started!";
+                }
+              }, 1000);
+            </script>
+          <% else %>
+            <p>Listing has already started.</p>
+          <% end %>
         </div>
       </div>
     </div>

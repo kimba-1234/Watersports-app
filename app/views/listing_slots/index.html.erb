@@ -1,4 +1,4 @@
-<p>See all of your bookings on this page</p>
+<p></p>
 
 <% if current_user.user_type == 'vendor' %>
   <%= render "vendorslots", listing_slots: @vendor_slots %>
@@ -6,4 +6,5 @@
   <%= render "clientslots", listing_slots: @client_slots %>
 <% end %>
 
-<%= link_to "Back to see all tours", listings_path%>
+
+<%= link_to "Back to see all tours", listings_path, class: "btn btn-secondary mt-3" %>
