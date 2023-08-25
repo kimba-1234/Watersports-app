@@ -4,19 +4,52 @@
   <p>Vendor : <%= @listing.user.vendor_name %></p>
   <p>Location : <%= @listing.location %></p>
   <p>Activity duration : <%= @listing.duration %> hours</p>
-  <%= image_tag @listing.image if @listing.image.attached? %>
+  <%= cl_image_tag @listing.image.key if @listing.image.attached? %>
+  <div class="card w-75 mb-5 bg-light">
+    <div class="card-body">
+      <strong class="card-title pb-5">Available Slots for <%= @listing.title %></strong><br>
+      <% if @available == 0 %>
+        <p>Sorry, no slots available for this tour.</p>
+      <% else %>
+        <% @listing.listing_slots.each do |slot| %>
+          <% if slot.booked != true %>
+            <% timeslot = "#{slot.start_time} - #{slot.end_time}" %>
+            <% @slot = slot %>
+            <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#exampleModal-<%=slot.id %>">
+              <%= timeslot %>
+            </button>
 
-
-  <h3>Available Slots for <%= @listing.title %></h3>
-  <% @listing.listing_slots.each do |slot| %>
-    <% timeslot = "#{slot.start_time} - #{slot.end_time}" %>
-    <% @slot = slot %>
-    <%= link_to timeslot, new_listing_listing_slot_booking_path(@listing, @slot, @user) %>
-    <br>
-  <% end %>
-  <p>--------</p>
-  <%= link_to "Back to see all tours", listings_path%> <br>
-  <% if current_user.user_type == 'vendor' %>
+            <div class="modal fade" id="exampleModal-<%=slot.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Review your booking</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>You're booking the <strong><%= @listing.title %></strong> tour with <strong><%= @listing.user.vendor_name %></strong>.</p>
+                    <p>Starts at: <strong><%= slot.start_time %></strong></p>
+                    <p>Ends at: <strong><%= slot.end_time %></strong></p>
+                    <p class="modal-title"></p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <%= link_to "Confirm booking",
+                      listing_listing_slot_bookings_path(@listing, slot),
+                      data: {turbo_method: :post},
+                      class: "btn btn-secondary"%>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <%= link_to "Back to see all tours", listings_path, class: "btn btn-secondary" %> <br>
+  <% if user_signed_in? && current_user.user_type == 'vendor' %>
     <%= link_to 'Edit Listing', edit_listing_path %> <br>
     <%= link_to "Add new slots for this listing", new_listing_listing_slot_path(@listing) %><br>
   <% end %>
