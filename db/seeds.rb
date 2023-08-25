@@ -38,14 +38,22 @@ photo1_3 = URI.open('https://files.worldwildlife.org/wwfcmsprod/images/CROPPED_G
 listing_1.photos.attach(io: photo1_3, filename: 'turtle3.jpg', content_type: 'image/jpg')
 listing_1.save!
 
-photo2 = URI.open('https://images.unsplash.com/photo-1597799119438-cbf326f268b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2833&q=80')
 listing_2 = Listing.new(title: "Swim with Nemo", description: "See hundreds of colourful fish on this snorkelling adventure", user: vendor_2, location: "Gili Island", duration: 8, price: 49.99)
+photo2 = URI.open('https://images.unsplash.com/photo-1597799119438-cbf326f268b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2833&q=80')
 listing_2.photos.attach(io: photo2, filename: 'image2.jpg', content_type: 'image/jpg')
+photo2_2 = URI.open('https://assets.pikiran-rakyat.com/crop/0x0:0x0/x/photo/2022/01/10/4166255578.jpg')
+listing_2.photos.attach(io: photo2_2, filename: 'image2.jpg', content_type: 'image/jpg')
+photo2_3= URI.open('https://media-cldnry.s-nbcnews.com/image/upload/newscms/2016_18/1075561/finding-nemo-dory-today-160504-tease-02.jpg')
+listing_2.photos.attach(io: photo2_3, filename: 'image2.jpg', content_type: 'image/jpg')
 listing_2.save!
 
-photo3 = URI.open('https://images.unsplash.com/photo-1610666025104-7ae9de779215?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80')
 listing_3 = Listing.new(title: "Surf and swim in Uluwatu", description: "Enjoy the beach and the waves on this surfing adventure", user: vendor_2, location: "Uluwatu", duration: 4, price: 30.50)
+photo3 = URI.open('https://images.unsplash.com/photo-1610666025104-7ae9de779215?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80')
 listing_3.photos.attach(io: photo3, filename: 'image3.jpg', content_type: 'image/jpg')
+photo3_2 = URI.open('https://www.surfindonesia.com/wp-content/uploads/2020/07/outside-corner-uluwatu-scaled-1.jpg?_t=1598348078')
+listing_3.photos.attach(io: photo3_2, filename: 'image3.jpg', content_type: 'image/jpg')
+photo3_3 = URI.open('https://i.pinimg.com/1200x/52/31/42/523142f9c0684b2faa51183764393915.jpg')
+listing_3.photos.attach(io: photo3_3, filename: 'image3.jpg', content_type: 'image/jpg')
 listing_3.save!
 
 listing_slot_1 = ListingSlot.create!(listing: listing_1, start_time: DateTime.parse('10 Sept 2023 09:00:00'), end_time: DateTime.parse('10 Sept 2023 17:00:00'), booked: true)
