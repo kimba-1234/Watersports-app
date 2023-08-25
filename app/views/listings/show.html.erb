@@ -1,70 +1,72 @@
 <div class="container my-3">
-  <div class="w-75 bg-white my">
     <h2 class="card-title"><%= @listing.title %></h2>
         <div class="row">
-          <div class="column">
+          <div class="col-12 p-0">
+              <div class="d-flex justify-content-between">
               <% @listing.photos.each do |photo| %>
                   <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
                <% end %>
+               </div>
           </div>
         </div>
   </div>
 
-
-  <div class="card border-light mb-3 bg-white w-75">
-    <div class="card-body">
-      <strong>Description</strong><br>
-      <p><%= @listing.description %></p>
-      <strong>Vendor</strong> <br>
-      <p><%= @listing.user.vendor_name %></p>
-      <strong>Location</strong>
-      <p><%= @listing.location %></p>
-      <strong>Activity duration</strong>
-      <p><%= @listing.duration %> hours</p>
-      <p>Tour price: $<%= @listing.price %></p>
+  <div class="d-flex">
+    <div class="card mb-3 bg-primary w-75 me-3 bg-opacity-10">
+      <div class="card-body">
+        <strong>Description</strong><br>
+        <p><%= @listing.description %></p>
+        <strong>Vendor</strong> <br>
+        <p><%= @listing.user.vendor_name %></p>
+        <strong>Location</strong>
+        <p><%= @listing.location %></p>
+        <strong>Activity duration</strong>
+        <p><%= @listing.duration %> hours</p>
+        <p>Tour price: $<%= @listing.price %></p>
+      </div>
     </div>
-  </div>
-  <div class="card w-75 mb-5 bg-light">
-    <div class="card-body">
-      <strong class="card-title pb-5">Available Slots for <%= @listing.title %></strong><br>
-      <% if @available == 0 %>
-        <p>Sorry, no slots available for this tour.</p>
-      <% else %>
-        <% @listing.listing_slots.each do |slot| %>
-          <% if slot.booked != true %>
-            <% timeslot = "#{slot.start_time} - #{slot.end_time}" %>
-            <% @slot = slot %>
-            <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#exampleModal-<%=slot.id %>">
-              <%= timeslot %>
-            </button>
+    <div class="card w-25 mb-5 bg-light">
+      <div class="card-body">
+        <strong class="card-title pb-5">Available Slots for <%= @listing.title %></strong><br>
+        <% if @available == 0 %>
+          <p>Sorry, no slots available for this tour.</p>
+        <% else %>
+          <% @listing.listing_slots.each do |slot| %>
+            <% if slot.booked != true %>
+              <% timeslot = "#{slot.start_time} - #{slot.end_time}" %>
+              <% @slot = slot %>
+              <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#exampleModal-<%=slot.id %>">
+                <%= timeslot %>
+              </button>
 
-            <div class="modal fade" id="exampleModal-<%=slot.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Review your booking</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <p>You're booking the <strong><%= @listing.title %></strong> tour with <strong><%= @listing.user.vendor_name %></strong>.</p>
-                    <p>Starts at: <strong><%= slot.start_time %></strong></p>
-                    <p>Ends at: <strong><%= slot.end_time %></strong></p>
-                    <p class="modal-title"></p>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <%= link_to "Confirm booking",
-                      listing_listing_slot_bookings_path(@listing, slot),
-                      data: {turbo_method: :post},
-                      class: "btn btn-secondary"%>
+              <div class="modal fade" id="exampleModal-<%=slot.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Review your booking</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>You're booking the <strong><%= @listing.title %></strong> tour with <strong><%= @listing.user.vendor_name %></strong>.</p>
+                      <p>Starts at: <strong><%= slot.start_time %></strong></p>
+                      <p>Ends at: <strong><%= slot.end_time %></strong></p>
+                      <p class="modal-title"></p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <%= link_to "Confirm booking",
+                        listing_listing_slot_bookings_path(@listing, slot),
+                        data: {turbo_method: :post},
+                        class: "btn btn-secondary"%>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <br>
+              <br>
+            <% end %>
           <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
   <%= link_to "Back to see all tours", listings_path, class: "btn btn-secondary" %> <br>
