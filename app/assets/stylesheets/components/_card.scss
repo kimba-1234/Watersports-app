@@ -2,6 +2,8 @@
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column
 }
 
 .card-trip > img {
@@ -29,4 +31,6 @@
 .card-trip .card-button {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
 }
